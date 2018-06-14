@@ -4,22 +4,22 @@ using namespace std;
 #define MAX_PEOC_ID  65536  
 #define TIME_SLICE    2  
   
-//½ø³Ì¿ØÖÆ¿é  
+//è¿›ç¨‹æŽ§åˆ¶å—  
 typedef struct PCB  
 {  
-    char name[10];                                      //½ø³ÌÃû id  
-    char state;                                         //½ø³Ì×´Ì¬ W/R  
-    int ArriveTime;                                     //½ø³Ìµ½´ïÊ±¼ä  
-    int StartTime;                                      //½ø³Ì¿ªÊ¼Ê±¼ä  
-    int FinshTime;                                      //½ø³Ì½áÊøÊ±¼ä  
-    int ServiceTime;                                    //½ø³Ì·þÎñÊ±¼ä  
-    float WholeTime;                                    //ÖÜ×ªÊ±¼ä  
-    float Weight_WholeTime;                             //´øÈ¨ÖÜ×ªÊ±¼ä  
-    double Average_WholeTime;                           //Æ½¾ùÖÜ×ªÊ±¼ä  
-    double Average_Weight_WholeTime;                    //´øÈ¨Æ½¾ùÖÜ×ªÊ±¼ä  
-     int RunTime;                                       //ÒÑ¾­Õ¼ÓÃCPUÊ±¼ä  
-     int NeedTime;                                      //»¹ÒªÕ¼ÓÃCPUÊ±¼ä   
-     int Prio;                                          //ÓÅÏÈ¼¶  
+    char name[10];                                      //è¿›ç¨‹å id  
+    char state;                                         //è¿›ç¨‹çŠ¶æ€ W/R  
+    int ArriveTime;                                     //è¿›ç¨‹åˆ°è¾¾æ—¶é—´  
+    int StartTime;                                      //è¿›ç¨‹å¼€å§‹æ—¶é—´  
+    int FinshTime;                                      //è¿›ç¨‹ç»“æŸæ—¶é—´  
+    int ServiceTime;                                    //è¿›ç¨‹æœåŠ¡æ—¶é—´  
+    float WholeTime;                                    //å‘¨è½¬æ—¶é—´  
+    float Weight_WholeTime;                             //å¸¦æƒå‘¨è½¬æ—¶é—´  
+    double Average_WholeTime;                           //å¹³å‡å‘¨è½¬æ—¶é—´  
+    double Average_Weight_WholeTime;                    //å¸¦æƒå¹³å‡å‘¨è½¬æ—¶é—´  
+     int RunTime;                                       //å·²ç»å ç”¨CPUæ—¶é—´  
+     int NeedTime;                                      //è¿˜è¦å ç”¨CPUæ—¶é—´   
+     int Prio;                                          //ä¼˜å…ˆçº§  
     struct PCB *next;  
 }pcb;  
   
@@ -33,7 +33,7 @@ pcb *tail=NULL;
 void FCFS_RunProccess(pcb *proc)  
 {  
     proc->StartTime=time;  
-    cout<<"Ê±¿Ì "<<time<<" ¿ªÊ¼Ö´ÐÐµ±Ç°×÷Òµ  "<<proc->name<<endl;  
+    cout<<"æ—¶åˆ» "<<time<<" å¼€å§‹æ‰§è¡Œå½“å‰ä½œä¸š  "<<proc->name<<endl;  
     time+=proc->ServiceTime;  
     proc->state='R';  
     proc->FinshTime=time;  
@@ -45,14 +45,14 @@ void FCFS_RunProccess(pcb *proc)
   
     proc->Average_WholeTime=Sum_WholeTime/Proc_Num;  
     proc->Average_Weight_WholeTime=Sum_Weight_WholeTime/Proc_Num;  
-	cout<<"µ½´ïÊ±¼ä:" <<proc->ArriveTime<<'\n' ;
-	cout<<"¿ªÊ¼Ê±¼ä:" <<proc->StartTime<<'\n' ;
-	cout<<"·þÎñÊ±¼ä:" <<proc->ServiceTime<<'\n' ;
-	cout<<"Íê³ÉÊ±¼ä:" <<proc->FinshTime<<'\n' ;
-	cout<<"ÖÜ×ªÊ±¼ä:" <<proc->WholeTime<<'\n' ;
-	cout<<"´øÈ¨ÖÜ×ªÊ±¼ä:" <<proc->Weight_WholeTime<<'\n' ;
-	cout<<"Æ½¾ùÖÜ×ªÊ±¼ä:" <<proc->Average_WholeTime<<'\n' ;
-	cout<<"Æ½¾ù´øÈ¨ÖÜ×ªÊ±¼ä:" <<proc->Average_Weight_WholeTime<<'\n' ;
+	cout<<"åˆ°è¾¾æ—¶é—´:" <<proc->ArriveTime<<'\n' ;
+	cout<<"å¼€å§‹æ—¶é—´:" <<proc->StartTime<<'\n' ;
+	cout<<"æœåŠ¡æ—¶é—´:" <<proc->ServiceTime<<'\n' ;
+	cout<<"å®Œæˆæ—¶é—´:" <<proc->FinshTime<<'\n' ;
+	cout<<"å‘¨è½¬æ—¶é—´:" <<proc->WholeTime<<'\n' ;
+	cout<<"å¸¦æƒå‘¨è½¬æ—¶é—´:" <<proc->Weight_WholeTime<<'\n' ;
+	cout<<"å¹³å‡å‘¨è½¬æ—¶é—´:" <<proc->Average_WholeTime<<'\n' ;
+	cout<<"å¹³å‡å¸¦æƒå‘¨è½¬æ—¶é—´:" <<proc->Average_Weight_WholeTime<<'\n' ;
 	cout<<'\n';
 }  
   
@@ -76,7 +76,7 @@ void FCFS()
   
 void FCFS_CreateProccess()  
 {  
-    cout<<"ÇëÊäÈë½ø³ÌµÄ¸öÊý: ";  
+    cout<<"è¯·è¾“å…¥è¿›ç¨‹çš„ä¸ªæ•°: ";  
     cin>>Proc_Num;  
     if(Proc_Num > MAX_PEOC_ID)  
     {  
@@ -91,11 +91,11 @@ void FCFS_CreateProccess()
             perror("malloc");  
             return;  
         }  
-        cout<<"ÇëÊäÈëµÚ"<<i<<"¸ö½ø³ÌÃû£º ";  
+        cout<<"è¯·è¾“å…¥ç¬¬"<<i<<"ä¸ªè¿›ç¨‹åï¼š ";  
         cin>>new_proc->name;  
-        cout<<"ÇëÊäÈëµÚ"<<i<<"¸ö½ø³Ìµ½´ïÊ±¼ä£º ";  
+        cout<<"è¯·è¾“å…¥ç¬¬"<<i<<"ä¸ªè¿›ç¨‹åˆ°è¾¾æ—¶é—´ï¼š ";  
         cin>>new_proc->ArriveTime;  
-        cout<<"ÇëÊäÈëµÚ"<<i<<"¸ö½ø³Ì·þÎñÊ±¼ä£º";  
+        cout<<"è¯·è¾“å…¥ç¬¬"<<i<<"ä¸ªè¿›ç¨‹æœåŠ¡æ—¶é—´ï¼š";  
         cin>>new_proc->ServiceTime;  
         new_proc->next=NULL;  
         if(head == NULL)  
@@ -147,7 +147,7 @@ void FCFS_CreateProccess()
   
 void PrioCreateProccess()  
 {  
-    cout<<"ÇëÊäÈë½ø³ÌµÄ¸öÊý: ";  
+    cout<<"è¯·è¾“å…¥è¿›ç¨‹çš„ä¸ªæ•°: ";  
     cin>>Proc_Num;  
     if(Proc_Num > MAX_PEOC_ID)  
     {  
@@ -162,13 +162,13 @@ void PrioCreateProccess()
             perror("malloc");  
             return;  
         }  
-        cout<<"ÇëÊäÈëµÚ"<<i<<"¸ö½ø³ÌÃû£º ";  
+        cout<<"è¯·è¾“å…¥ç¬¬"<<i<<"ä¸ªè¿›ç¨‹åï¼š ";  
         cin>>new_proc->name;  
-        cout<<"ÇëÊäÈëµÚ"<<i<<"¸ö½ø³Ìµ½´ïÊ±¼ä£º ";  
+        cout<<"è¯·è¾“å…¥ç¬¬"<<i<<"ä¸ªè¿›ç¨‹åˆ°è¾¾æ—¶é—´ï¼š ";  
         cin>>new_proc->ArriveTime;  
-        cout<<"ÇëÊäÈëµÚ"<<i<<"¸ö½ø³Ì·þÎñÊ±¼ä£º";  
+        cout<<"è¯·è¾“å…¥ç¬¬"<<i<<"ä¸ªè¿›ç¨‹æœåŠ¡æ—¶é—´ï¼š";  
         cin>>new_proc->ServiceTime;  
-        cout<<"ÇëÊäÈëµÚ"<<i<<"¸ö½ø³ÌÓÅÏÈ¼¶:(ÖµÔ½Ð¡ÓÅÏÈ¼¶Ô½¸ß) ";  
+        cout<<"è¯·è¾“å…¥ç¬¬"<<i<<"ä¸ªè¿›ç¨‹ä¼˜å…ˆçº§:(å€¼è¶Šå°ä¼˜å…ˆçº§è¶Šé«˜) ";  
         cin>>new_proc->Prio;  
         new_proc->next=NULL;  
         if(head == NULL)  
@@ -220,13 +220,13 @@ void PrioCreateProccess()
 void  RR_RunProccess(PCB *proc)  
 {  
     proc->StartTime=time;  
-    cout<<"Ê±¿Ì "<<time<<" ¿ªÊ¼Ö´ÐÐµ±Ç°×÷Òµ  "<<proc->name<<endl;  
+    cout<<"æ—¶åˆ» "<<time<<" å¼€å§‹æ‰§è¡Œå½“å‰ä½œä¸š  "<<proc->name<<endl;  
     proc->RunTime+=TIME_SLICE;  
     time+=TIME_SLICE;  
     proc->NeedTime=proc->ServiceTime-proc->RunTime;  
     if(proc->NeedTime <=0)  
     {  
-        cout<<"Ê±¿Ì "<<time<<" ½áÊø×÷Òµ  "<<proc->name<<endl;  
+        cout<<"æ—¶åˆ» "<<time<<" ç»“æŸä½œä¸š  "<<proc->name<<endl;  
             head=proc->next;  
             free(proc);  
             proc=NULL;  
@@ -237,8 +237,8 @@ void  RR_RunProccess(PCB *proc)
     }  
     else  
     {  
-        cout<<"Ê±¿Ì "<<time<<" ¹ÒÆð×÷Òµ  "<<proc->name<<endl;  
-        cout<<"ÒÑ¾­ÔËÐÐÁË"<<proc->RunTime<<"Ãë»¹ÐèÒªÖ´ÐÐ"<<proc->NeedTime<<"Ãë"<<endl;  
+        cout<<"æ—¶åˆ» "<<time<<" æŒ‚èµ·ä½œä¸š  "<<proc->name<<endl;  
+        cout<<"å·²ç»è¿è¡Œäº†"<<proc->RunTime<<"ç§’è¿˜éœ€è¦æ‰§è¡Œ"<<proc->NeedTime<<"ç§’"<<endl;  
         if(proc->next != NULL)  
         {  
         head=proc->next;  
@@ -271,10 +271,10 @@ void main()
     int select=1;  
     while(select)  
     {  
-        cout<<"1.ÏÈÀ´ÏÈ·þÎñËã·¨\n";  
-        cout<<"2.Ê±¼äÆ¬ÂÖ×ª\n";   
-        cout<<"3.ÓÅÏÈ¼¶µ÷¶È\n";  
-    cout<<"ÇëÑ¡Ôñ:> ";  
+        cout<<"1.å…ˆæ¥å…ˆæœåŠ¡ç®—æ³•\n";  
+        cout<<"2.æ—¶é—´ç‰‡è½®è½¬\n";   
+        cout<<"3.ä¼˜å…ˆçº§è°ƒåº¦\n";  
+    cout<<"è¯·é€‰æ‹©:> ";  
     cin>>select;  
     switch(select)  
     {  
