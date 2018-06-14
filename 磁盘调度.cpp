@@ -9,14 +9,14 @@
 #include <fstream>  
 using namespace std;  
   
-int position = 0;      //µ±Ç°´ÅµÀÎ»ÖÃ  
+int position = 0;      //å½“å‰ç£é“ä½ç½®  
 int dis = 0;  
 double average_distance = 0;  
   
 void request(vector<int>&m_vec,ofstream &outfile){  
-    cout<<"Ëæ»úÉú³É´ÅÅÌĞòÁĞ£º"<<endl;  
+    cout<<"éšæœºç”Ÿæˆç£ç›˜åºåˆ—ï¼š"<<endl;  
     int n = 0;  
-    srand(time(NULL));     //Ìí¼ÓËæ»úÊıÖÖ×Ó  
+    srand(time(NULL));     //æ·»åŠ éšæœºæ•°ç§å­  
     n = rand() % 20 + 1;  
     int temp = 0;  
     for(int i=0;i<n;i++){  
@@ -27,14 +27,14 @@ void request(vector<int>&m_vec,ofstream &outfile){
     }  
     cout<<endl;  
     position = rand() % 100;  
-    cout<<"µ±Ç°´ÅµÀ£º"<<position<<endl;  
+    cout<<"å½“å‰ç£é“ï¼š"<<position<<endl;  
 }  
   
 void compute_dis(vector<int>m_vec,int &dis,double &average_distance){  
     average_distance = (double)dis / (double)m_vec.size();  
 }  
   
-void FIFO(vector<int>m_vec,int position){     //ÏÈÀ´ÏÈ·şÎñËã·¨  
+void FIFO(vector<int>m_vec,int position){     //å…ˆæ¥å…ˆæœåŠ¡ç®—æ³•  
     dis = 0;  
     average_distance = 0;  
     for(vector<int>::iterator it=m_vec.begin();it!=m_vec.end();it++){  
@@ -46,10 +46,10 @@ void FIFO(vector<int>m_vec,int position){     //ÏÈÀ´ÏÈ·şÎñËã·¨
     compute_dis(m_vec,dis,average_distance);  
 }  
   
-void SSTF(vector<int>m_vec,int position){   //×î¶ÌÑ°µÀÊ±¼äËã·¨  
+void SSTF(vector<int>m_vec,int position){   //æœ€çŸ­å¯»é“æ—¶é—´ç®—æ³•  
     dis = 0;  
     average_distance = 0;  
-    sort(m_vec.begin(),m_vec.end());    //´ÓĞ¡µ½´óÅÅĞò  
+    sort(m_vec.begin(),m_vec.end());    //ä»å°åˆ°å¤§æ’åº  
     int i = 0;  
     for(vector<int>::iterator it=m_vec.begin();it!=m_vec.end();it++){  
         if(position >= *it)  
@@ -78,16 +78,16 @@ void SSTF(vector<int>m_vec,int position){   //×î¶ÌÑ°µÀÊ±¼äËã·¨
     compute_dis(m_vec,dis,average_distance);  
 }  
   
-void SCAN(vector<int>m_vec,int position){   //µçÌİµ÷¶ÈËã·¨  
+void SCAN(vector<int>m_vec,int position){   //ç”µæ¢¯è°ƒåº¦ç®—æ³•  
     dis = 0;  
     average_distance = 0;  
-    sort(m_vec.begin(),m_vec.end());    //´ÓĞ¡µ½´óÅÅĞò  
+    sort(m_vec.begin(),m_vec.end());    //ä»å°åˆ°å¤§æ’åº  
     int i = 0;  
     for(vector<int>::iterator it=m_vec.begin();it!=m_vec.end();it++){  
         if(position >= *it)  
-            i++;      //ÕÒµ½positionËùÔÚµÄ´ÅµÀ  
+            i++;      //æ‰¾åˆ°positionæ‰€åœ¨çš„ç£é“  
     }  
-    int left = i - 1;   //ÏÈ´ÓÍâµ½ÄÚÉ¨Ãè  
+    int left = i - 1;   //å…ˆä»å¤–åˆ°å†…æ‰«æ  
     int right = i;  
     while(left >= 0){  
         dis += abs(position - m_vec[left]);  
@@ -106,16 +106,16 @@ void SCAN(vector<int>m_vec,int position){   //µçÌİµ÷¶ÈËã·¨
     compute_dis(m_vec,dis,average_distance);  
 }  
   
-void CSCAN(vector<int>m_vec,int position){   //Ñ­»·É¨ÃèËã·¨  
+void CSCAN(vector<int>m_vec,int position){   //å¾ªç¯æ‰«æç®—æ³•  
     dis = 0;  
     average_distance = 0;  
-    sort(m_vec.begin(),m_vec.end());    //´ÓĞ¡µ½´óÅÅĞò  
+    sort(m_vec.begin(),m_vec.end());    //ä»å°åˆ°å¤§æ’åº  
     int i = 0;  
     for(vector<int>::iterator it=m_vec.begin();it!=m_vec.end();it++){  
         if(position >= *it)  
-            i++;      //ÕÒµ½positionËùÔÚµÄ´ÅµÀ  
+            i++;      //æ‰¾åˆ°positionæ‰€åœ¨çš„ç£é“  
     }  
-    int left = i - 1;   //ÏÈ´ÓÍâµ½ÄÚÉ¨Ãè  
+    int left = i - 1;   //å…ˆä»å¤–åˆ°å†…æ‰«æ  
     int right = i;  
     while(left >= 0){  
         dis += abs(position - m_vec[left]);  
@@ -124,7 +124,7 @@ void CSCAN(vector<int>m_vec,int position){   //Ñ­»·É¨ÃèËã·¨
         position = m_vec[left];  
         left --;  
     }  
-    position = 100;     //Á¢¼´µ½×îÍâ²àµÄ´ÅµÀ  
+    position = 100;     //ç«‹å³åˆ°æœ€å¤–ä¾§çš„ç£é“  
     int len = m_vec.size()-1;  
     while(len >= right){  
         dis += abs(position - m_vec[len]);  
@@ -136,17 +136,17 @@ void CSCAN(vector<int>m_vec,int position){   //Ñ­»·É¨ÃèËã·¨
     compute_dis(m_vec,dis,average_distance);  
 }  
   
-void FSCAN(vector<int>m_vec,int position){   //·Ö²½µçÌİµ÷¶ÈËã·¨£¬¡£·ÖÁ½¸ö¶ÓÁĞ  
+void FSCAN(vector<int>m_vec,int position){   //åˆ†æ­¥ç”µæ¢¯è°ƒåº¦ç®—æ³•ï¼Œã€‚åˆ†ä¸¤ä¸ªé˜Ÿåˆ—  
     dis = 0;  
     average_distance = 0;  
     //SCAN(m_vec,position);  
-    sort(m_vec.begin(),m_vec.end());    //´ÓĞ¡µ½´óÅÅĞò  
+    sort(m_vec.begin(),m_vec.end());    //ä»å°åˆ°å¤§æ’åº  
     int i = 0;  
     for(vector<int>::iterator it=m_vec.begin();it!=m_vec.end();it++){  
         if(position >= *it)  
-            i++;      //ÕÒµ½positionËùÔÚµÄ´ÅµÀ  
+            i++;      //æ‰¾åˆ°positionæ‰€åœ¨çš„ç£é“  
     }  
-    int left = i - 1;   //ÏÈ´ÓÍâµ½ÄÚÉ¨Ãè  
+    int left = i - 1;   //å…ˆä»å¤–åˆ°å†…æ‰«æ  
     int right = i;  
     while(left >= 0){  
         dis += abs(position - m_vec[left]);  
@@ -163,7 +163,7 @@ void FSCAN(vector<int>m_vec,int position){   //·Ö²½µçÌİµ÷¶ÈËã·¨£¬¡£·ÖÁ½¸ö¶ÓÁĞ
         right ++;  
     }  
     cout<<endl;  
-    cout<<"ÔÚÉ¨ÃèµÄ¹ı³ÌÖĞĞÂ²úÉúµÄ·şÎñĞòÁĞ£º"<<endl;  
+    cout<<"åœ¨æ‰«æçš„è¿‡ç¨‹ä¸­æ–°äº§ç”Ÿçš„æœåŠ¡åºåˆ—ï¼š"<<endl;  
     vector<int>ve;  
     while(!ve.empty())  
         ve.pop_back();  
@@ -172,7 +172,7 @@ void FSCAN(vector<int>m_vec,int position){   //·Ö²½µçÌİµ÷¶ÈËã·¨£¬¡£·ÖÁ½¸ö¶ÓÁĞ
     int temp = 0;  
     for(i=0;i<n;i++){  
         temp = rand() % 100;  
-        cout<<temp<<"¡¡";  
+        cout<<temp<<"ã€€";  
         ve.push_back(temp);  
     }  
     cout<<endl;  
@@ -183,21 +183,21 @@ void FSCAN(vector<int>m_vec,int position){   //·Ö²½µçÌİµ÷¶ÈËã·¨£¬¡£·ÖÁ½¸ö¶ÓÁĞ
   
 void print(){  
     cout<<endl<<endl;  
-    cout<<"¾­¼ÆËã£¬´ÅÍ·ÒÆ¶¯µÄ×Ü¾àÀëÎª:"<<dis<<endl;  
-    cout<<"´ÅÍ·Æ½¾ùÒÆ¶¯¾àÀë:"<<average_distance<<endl;  
+    cout<<"ç»è®¡ç®—ï¼Œç£å¤´ç§»åŠ¨çš„æ€»è·ç¦»ä¸º:"<<dis<<endl;  
+    cout<<"ç£å¤´å¹³å‡ç§»åŠ¨è·ç¦»:"<<average_distance<<endl;  
     cout<<endl<<endl;  
 }  
   
 int choose_algorithm(vector<int>m_vec){  
     cout<<endl<<endl;  
-    cout<<"±¾ÊµÑé¿ÉÓÃµÄµ÷¶ÈËã·¨ÓĞÒÔÏÂ5ÖÖ£º"<<endl;  
-    cout<<"1.FIFO  2.SSTF  3.SCAN  4.CSCAN  5.FSCAN  6.½áÊø±¾ĞòÁĞµÄµ÷¶È  7.½áÊø³ÌĞò"<<endl;  
+    cout<<"æœ¬å®éªŒå¯ç”¨çš„è°ƒåº¦ç®—æ³•æœ‰ä»¥ä¸‹5ç§ï¼š"<<endl;  
+    cout<<"1.FIFO  2.SSTF  3.SCAN  4.CSCAN  5.FSCAN  6.ç»“æŸæœ¬åºåˆ—çš„è°ƒåº¦  7.ç»“æŸç¨‹åº"<<endl;  
     int choice = 0;  
-    cout<<"Ñ¡Ôñ£º"<<endl;  
+    cout<<"é€‰æ‹©ï¼š"<<endl;  
     cin>>choice;  
     cout<<endl;  
     while(choice!=6 && choice!=7){  
-        cout<<"´ÅÅÌÇëÇóµÄ·şÎñ×´¿ö£º"<<endl;  
+        cout<<"ç£ç›˜è¯·æ±‚çš„æœåŠ¡çŠ¶å†µï¼š"<<endl;  
         cout<<position;  
         switch(choice){  
             case 1:  
@@ -211,11 +211,11 @@ int choose_algorithm(vector<int>m_vec){
             case 5:  
                 FSCAN(m_vec,position);break;  
             default:  
-                cout<<"******·Ç·¨ÊäÈë£¡******"<<endl<<endl;break;   
+                cout<<"******éæ³•è¾“å…¥ï¼******"<<endl<<endl;break;   
         }   
         if(choice<=7 && choice>=1)   
             print();  
-        cout<<"Ñ¡Ôñ£º"<<endl;  
+        cout<<"é€‰æ‹©ï¼š"<<endl;  
         cin>>choice;  
     }  
     if(choice == 7)  
@@ -226,14 +226,14 @@ int choose_algorithm(vector<int>m_vec){
 }  
   
 int main(){  
-    cout<<"---------------´ÅÅÌµ÷¶ÈËã·¨Ä£ÄâÊµÑé-----------------"<<endl;  
+    cout<<"---------------ç£ç›˜è°ƒåº¦ç®—æ³•æ¨¡æ‹Ÿå®éªŒ-----------------"<<endl;  
     ofstream outfile;  
     outfile.open("data.txt");  
     while(1){  
         vector<int> vec;  
         while(!vec.empty())  
             vec.pop_back();  
-        request(vec,outfile);         //ÇëÇó·şÎñĞòÁĞ   
+        request(vec,outfile);         //è¯·æ±‚æœåŠ¡åºåˆ—   
         int flag = choose_algorithm(vec);  
         if(flag == 0)  
             break;  
